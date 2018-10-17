@@ -10,7 +10,7 @@ const port = process.argv[3] || "14222";
 const stan = STAN.connect(config.clusterId, clientId, { url: `${config.server}:${port}` });
 
 stan.on("connect", () => {
-	console.log("stan connected");
+	console.log(`client: ${clientId} connected to nats on port: ${port}`);
 	start(publish);
 });
 

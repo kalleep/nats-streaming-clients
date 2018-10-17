@@ -6,7 +6,9 @@
 	"scripts": {
 		"build": "node_modules/.bin/tsc",
 		"docker:up": "docker-compose up -d",
-		"docker:down": "docker-compose down"
+		"docker:down": "docker-compose down",
+		"start:pub": "node dist/pub.js",
+		"start:sub": "node dist/sub.js"
 	},
 	"keywords": [],
 	"author": "",
