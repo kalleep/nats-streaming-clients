@@ -1,5 +1,5 @@
 
 export const config = {
 	clusterId: "test-cluster",
-	server: "nats://localhost"
+	servers: [ "nats://localhost:14222", "nats://localhost:24222", "nats://localhost:34222" ]
 }
