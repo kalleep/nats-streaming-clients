@@ -1,18 +1,21 @@
 {
-  "name": "nats-streaming-clients",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "node-nats-streaming": "0.0.50"
-  },
-  "devDependencies": {
-    "@types/node": "^10.12.0"
-  }
+	"name": "nats-streaming-clients",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"build": "node_modules/.bin/tsc",
+		"docker:up": "docker-compose up -d",
+		"docker:down": "docker-compose down"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"node-nats-streaming": "0.0.50"
+	},
+	"devDependencies": {
+		"@types/node": "^10.12.0",
+		"typescript": "^3.1.3"
+	}
 }
