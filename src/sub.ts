@@ -31,12 +31,12 @@ const cleanUp = () => {
 
 const sub = () => {
 
-	const opts = stan.subscriptionOptions().setDeliverAllAvailable().setDurableName(clientId);
+	const opts = stan.subscriptionOptions().setDeliverAllAvailable().setDurableName("durable");
 
-	const subscription = stan.subscribe("hello", "subgroup", opts);
+	const subscription = stan.subscribe("hello", "sub", opts);
 
 	subscription.on("message", (message: STAN.Message) => {
-		console.log("message");
+		console.log("SUB message");
 		console.log("Sequence number: %s", message.getSequence());
 		console.log("message: %s", message.getData());
 	});

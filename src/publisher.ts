@@ -1,11 +1,11 @@
 import * as STAN from 'node-nats-streaming';
 import { config } from './config';
 
-const stan = STAN.connect(config.clusterId, "publisher", { url: "nats://localhost:4444" });
+const stan = STAN.connect(config.clusterId, "publisher", { url: config.server });
 
 stan.on("connect", () => {
-	console.log("connected")
-	start();
+	console.log("stan connected");
+	start(publish);
 });
 
 stan.on("error", error => {
@@ -18,18 +18,18 @@ const sleep = (ms: number) => {
 	})
 }
 
-const start = async () => {
+const start = async (func) => {
 
 	let i = 0;
 
 	while(true) {
 
-		publish(i);
+		func(i);
 
 		i++;
 
 		try {
-			await sleep(1000);
+			await sleep(200);
 		}
 		catch(error) {
 			break;
