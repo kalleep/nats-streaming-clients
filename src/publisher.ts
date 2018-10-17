@@ -40,6 +40,7 @@ const start = async () => {
 }
 
 const publish = (i: number) => {
+
 	stan.publish("hello", i.toString(), (err, guid) => {
 
 		if(err) {
@@ -48,11 +49,11 @@ const publish = (i: number) => {
 			console.log(guid);
 		}
 	});
-}
+};
 
 process.on("exit", () => {
 	cleanUp();
-})
+});
 
 process.on('SIGINT', () => {
 	cleanUp();
