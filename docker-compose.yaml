@@ -1,0 +1,64 @@
+version: "3"
+services:
+  nats-streaming-1:
+    command:
+      - "-D"
+      - "-p"
+      - "4222"
+      - "--clustered=true"
+      - "--cluster_bootstrap=true"
+      - "-store"
+      - "file"
+      - "-dir"
+      - "datastore"
+      - "--cluster_node_id"
+      - "node_1"
+      - "-cluster"
+      - "nats://nats-streaming-1:6222"
+    expose:
+      - "6222"
+    image: "nats-streaming"
+    ports:
+      - "14222:4222"
+  nats-streaming-2:
+    command:
+      - "-D"
+      - "-p"
+      - "4222"
+      - "--clustered=true"
+      - "-store"
+      - "file"
+      - "-dir"
+      - "datastore"
+      - "--cluster_node_id"
+      - "node_2"
+      - "-cluster"
+      - "nats://nats-streaming-2:6222"
+      - "-routes"
+      - "nats://nats-streaming-1:6222"
+    image: "nats-streaming"
+    expose:
+      - "6222"
+    ports:
+      - "24222:4222"
+  nats-streaming-3:
+    command:
+      - "-D"
+      - "-p"
+      - "4222"
+      - "--clustered=true"
+      - "-store"
+      - "file"
+      - "-dir"
+      - "datastore"
+      - "--cluster_node_id"
+      - "node_3"
+      - "-cluster"
+      - "nats://nats-streaming-3:6222"
+      - "-routes"
+      - "nats://nats-streaming-1:6222"
+    image: "nats-streaming"
+    expose:
+      - "6222"
+    ports:
+      - "34222:4222"

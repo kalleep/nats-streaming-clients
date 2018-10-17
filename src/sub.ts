@@ -6,7 +6,9 @@ const node = process.argv[2];
 
 const clientId = `sub_${node || 0}`;
 
-const stan = STAN.connect(config.clusterId, clientId, { url: config.server });
+const port = process.argv[3] || "14222";
+
+const stan = STAN.connect(config.clusterId, clientId, { url: `${config.server}:${port}` });
 
 stan.on("connect", () => {
 	sub();

@@ -1,7 +1,13 @@
 import * as STAN from 'node-nats-streaming';
 import { config } from './config';
 
-const stan = STAN.connect(config.clusterId, "publisher", { url: config.server });
+const node = process.argv[2];
+
+const clientId = `pub_${node || 0}`;
+
+const port = process.argv[3] || "14222";
+
+const stan = STAN.connect(config.clusterId, clientId, { url: `${config.server}:${port}` });
 
 stan.on("connect", () => {
 	console.log("stan connected");
@@ -29,7 +35,7 @@ const start = async (func) => {
 		i++;
 
 		try {
-			await sleep(200);
+			await sleep(2000);
 		}
 		catch(error) {
 			break;
